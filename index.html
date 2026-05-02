@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VoteSathi AI — Your Indian Election Guide</title>
+    <meta
+      name="description"
+      content="Understand Indian elections step-by-step with AI. Get answers about voter registration, election timelines, EVMs, and your voting rights."
+    />
+    <meta
+      name="keywords"
+      content="Indian elections, voter registration, Lok Sabha, ECI, voting guide, election process India, VoteSathi"
+    />
+    <meta property="og:title" content="VoteSathi AI — Your Indian Election Guide" />
+    <meta
+      property="og:description"
+      content="AI-powered guide to Indian elections, voter rights, and the complete election process."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <link rel="stylesheet" href="/src/styles/animations.css" />
+
+    <!-- Google Analytics (gtag.js) -->
+    <!-- Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <nav id="navbar"></nav>
+      <main id="main-content" role="main"></main>
+      <footer id="footer-container"></footer>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
