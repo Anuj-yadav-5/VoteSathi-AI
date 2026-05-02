@@ -11,6 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
+app.set('trust proxy', 1); // Trust first proxy (Cloud Run)
 const PORT = process.env.PORT || 8080;
 const API_KEY = process.env.GEMINI_API_KEY;
 
@@ -100,7 +101,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
     ];
 
     const response = await ai.models.generateContent({
-      model: 'gemini-flash-latest',
+      model: 'gemini-2.5-flash',
       contents,
       config: {
         systemInstruction: SYSTEM_INSTRUCTION,
@@ -127,7 +128,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
 
 // Health check
 app.get('/api/health', (req, res) =>
-  res.json({ status: 'ok', model: 'gemini-flash-latest', timestamp: new Date().toISOString() })
+  res.json({ status: 'ok', model: 'gemini-2.5-flash', timestamp: new Date().toISOString() })
 );
 
 // Serve Vite production build in production
