@@ -11,7 +11,7 @@
 
 ## ✨ Features
 
-- 🤖 **AI Voter Assistant:** A powerful chatbot backed by Google Gemini. It answers questions about voter eligibility, the voting process, polling booths, and EVMs.
+- 🤖 **AI Voter Assistant:** A powerful chatbot backed by Google Gemini 1.5 Flash. It answers questions about voter eligibility, the voting process, polling booths, and EVMs.
 - 🎨 **Indian National Theme:** A stunning, patriotic UI overhaul featuring an elegant Saffron-White-Green design system, optimized for both high-contrast light and premium dark modes.
 - 📟 **EVM Simulator:** A realistic, interactive simulation of an Electronic Voting Machine (EVM) and VVPAT. Voters can practice casting a vote, see the red light indicator, hear the "beep", and watch the 7-second VVPAT slip verification.
 - 📱 **Mobile-First Responsive Design:** Features a fully fluid layout, full-screen mobile chat interface, and smooth horizontal scrolling elements optimized for all devices.
@@ -26,11 +26,44 @@
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React, Vanilla JavaScript, CSS3, Tailwind CSS (Design System).
-- **Backend (API Proxy):** Node.js, Express.js (securely handling AI requests and CORS).
-- **AI Model:** Google Gemini Flash (`@google/genai` SDK).
-- **Build Tool:** Vite
-- **Deployment & Containerization:** Docker, Google Cloud Run
+- **Frontend**: Vite + Vanilla JS + Tailwind CSS
+- **Backend**: Node.js + Express
+- **AI**: Google Gemini 1.5 Flash (via `@google/genai`)
+- **Testing**: Vitest + Supertest
+- **Security**: Helmet, Express Rate Limit, DOMPurify
+- **Deployment**: Google Cloud Run (Dockerized)
+
+## 🛡️ Security & Code Quality
+
+VoteSathi AI is built with production-grade security and performance in mind:
+
+- **Cloud Native**: Configured for Google Cloud Run with `trust proxy` enabled for accurate rate limiting.
+- **Robust Headers**: Uses `helmet` for secure HTTP headers and Content Security Policy (CSP).
+- **Rate Limiting**: Intelligent API rate limiting to prevent abuse while ensuring availability.
+- **Sanitization**: All AI responses and user inputs are sanitized via DOMPurify.
+- **Payload Control**: Strict 5KB payload limits on API endpoints to prevent DoS.
+
+---
+
+## 🧪 Testing
+
+The project includes a comprehensive suite of unit and integration tests.
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run linter
+npm run lint
+```
+
+### Coverage
+- **API**: Integration tests for all endpoints in `server.js`.
+- **Utilities**: Unit tests for storage, voice, and helper functions.
+- **Components**: UI logic testing for core pages.
 
 ---
 
@@ -38,9 +71,9 @@
 
 To run VoteSathi AI on your local machine, follow these steps:
 
-1. **Clone the repository** and navigate to the project directory:
+1. **Clone the repository**:
    ```bash
-   git clone https://github.com/[username]/VoteSathi-AI.git
+   git clone https://github.com/Anuj-yadav-5/VoteSathi-AI.git
    cd VoteSathi-AI
    ```
 
@@ -50,10 +83,15 @@ To run VoteSathi AI on your local machine, follow these steps:
    ```
 
 3. **Set up environment variables:**
-   Create a `.env` file in the root directory and add your Gemini API Key:
+   Copy the example environment file and add your Gemini API Key from [Google AI Studio](https://aistudio.google.com/):
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env`:
    ```env
    GEMINI_API_KEY=your_gemini_api_key_here
    PORT=8080
+   NODE_ENV=development
    ```
 
 4. **Start the development server:**

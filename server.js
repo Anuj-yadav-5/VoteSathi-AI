@@ -11,13 +11,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-app.set('trust proxy', 1); // Trust first proxy (Cloud Run)
+app.set('trust proxy', 1); // Required for express-rate-limit on Cloud Run
 const PORT = process.env.PORT || 8080;
 const API_KEY = process.env.GEMINI_API_KEY;
 
 if (!API_KEY) {
-  console.error('❌ GEMINI_API_KEY is not set in .env');
-  process.exit(1);
+  console.error('❌ CRITICAL: GEMINI_API_KEY is not set in environment variables.');
+  console.log('Available env vars:', Object.keys(process.env).filter(k => !k.includes('KEY') && !k.includes('SECRET')));
 }
 
 // 1. HTTP Security Headers
@@ -63,7 +63,7 @@ const chatLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// Gemini client
+// Gemini client — explicitly using Google AI Studio (API Key)
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 const SYSTEM_INSTRUCTION = `You are VoteSathi AI, an expert guide on Indian elections. Help citizens understand:
@@ -83,7 +83,11 @@ Rules:
 - Stay strictly neutral on political parties and candidates
 - Never recommend any specific party or candidate`;
 
-// Chat endpoint
+/**
+ * POST /api/chat
+ * Handles chat interactions with the Gemini AI model.
+ * Includes rate limiting, payload validation, and context handling.
+ */
 app.post('/api/chat', chatLimiter, async (req, res) => {
   try {
     const { message, history = [] } = req.body;
@@ -101,7 +105,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
     ];
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-flash-latest',
       contents,
       config: {
         systemInstruction: SYSTEM_INSTRUCTION,
@@ -111,7 +115,10 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
     });
 
     const reply = response.text;
-    if (!reply) throw new Error('Empty response from Gemini');
+    if (!reply) {
+      console.error('Empty response from Gemini. Response object:', JSON.stringify(response, null, 2));
+      throw new Error('Empty response from Gemini');
+    }
 
     res.json({ reply });
   } catch (err) {
@@ -126,9 +133,12 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
   }
 });
 
-// Health check
+/**
+ * GET /api/health
+ * Simple health check endpoint to verify server status.
+ */
 app.get('/api/health', (req, res) =>
-  res.json({ status: 'ok', model: 'gemini-2.5-flash', timestamp: new Date().toISOString() })
+  res.json({ status: 'ok', model: 'gemini-flash-latest', timestamp: new Date().toISOString() })
 );
 
 // Serve Vite production build in production
@@ -137,4 +147,9 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => res.sendFile(join(__dirname, 'dist', 'index.html')));
 }
 
-app.listen(PORT, () => console.log(`✅ VoteSathi AI backend running on http://localhost:${PORT}`));
+// Export app for testing
+export { app };
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => console.log(`✅ VoteSathi AI backend running on http://localhost:${PORT}`));
+}
