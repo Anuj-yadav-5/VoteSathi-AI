@@ -21,6 +21,14 @@ export const FEATURES = [
     badge: 'badge-purple',
   },
   {
+    icon: 'monitor-play',
+    title: 'EVM Simulator',
+    desc: 'Interactive 3D simulation of voting on an EVM with VVPAT feedback.',
+    route: '#evm',
+    badge: 'badge-orange',
+    isNew: true,
+  },
+  {
     icon: 'brain',
     title: 'Civic Quiz',
     desc: 'Test your knowledge with 20 questions on Indian democracy.',

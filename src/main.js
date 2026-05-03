@@ -13,6 +13,7 @@ initNavbar();
 register('#home', () => import('./pages/Home.js'));
 register('#timeline', () => import('./pages/Timeline.js'));
 register('#guide', () => import('./pages/Guide.js'));
+register('#evm', () => import('./pages/EvmSimulator.js'));
 
 register('#quiz', () => import('./pages/Quiz.js'));
 register('#glossary', () => import('./pages/Glossary.js'));

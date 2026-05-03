@@ -20,20 +20,12 @@ export function render() {
       position:relative;
       overflow:hidden;
     }
-    .res-action-card::before {
-      content:'';
-      position:absolute;
-      top:0;left:0;right:0;
-      height:2px;
-      opacity:0;
-      transition:opacity 0.2s;
-    }
+    /* Local res-action-card accent removed as it is now global in tailwind.css */
     .res-action-card:hover {
       border-color:rgba(245,158,11,0.35);
       transform:translateY(-3px);
       box-shadow:0 12px 36px rgba(0,0,0,0.4);
     }
-    .res-action-card:hover::before { opacity:1; }
     .res-portal-card {
       display:block;
       background:var(--color-surface);
@@ -93,7 +85,7 @@ export function render() {
           <span style="font-size:11px;font-weight:700;color:#f59e0b;letter-spacing:0.1em;text-transform:uppercase;">Official Links</span>
         </div>
         <h1 class="reveal" style="font-size:clamp(30px,5vw,52px);font-weight:800;margin-bottom:14px;line-height:1.15;">
-          Resources &amp; <span style="background:linear-gradient(135deg,#fbbf24,#d97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Official Links</span>
+          Resources &amp; <span class="text-gradient-primary">Official Links</span>
         </h1>
         <p class="reveal" style="color:var(--color-muted);font-size:16px;max-width:500px;line-height:1.7;">
           Direct access to ECI portals, state CEO websites, voter apps, and official helplines.
@@ -107,7 +99,7 @@ export function render() {
         <div class="section-label reveal">Quick Actions</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;">
           ${QUICK_ACTIONS.map((a) => `
-            <a href="${a.href}" target="_blank" rel="noopener" class="res-action-card reveal" aria-label="${a.title}" style="--accent:${a.color};">
+            <a href="${a.href}" target="_blank" rel="noopener" class="res-action-card resource-card reveal" aria-label="${a.title}" style="--accent:${a.color};">
               <div style="display:flex;align-items:flex-start;gap:14px;">
                 <div style="width:44px;height:44px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">${a.icon}</div>
                 <div style="flex:1;">
@@ -159,7 +151,7 @@ export function render() {
           <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,158,11,0.06),transparent 70%);pointer-events:none;"></div>
           <div style="font-size:52px;margin-bottom:16px;">☎️</div>
           <h2 style="font-size:clamp(22px,3vw,32px);font-weight:800;margin-bottom:10px;">
-            Voter Helpline: <span style="background:linear-gradient(135deg,#fbbf24,#d97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">1950</span>
+            Voter Helpline: <span class="text-gradient-primary">1950</span>
           </h2>
           <p style="color:var(--color-muted);font-size:15px;margin-bottom:28px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.7;">
             Free toll-free helpline available in multiple languages for all election-related queries, complaints, and voter registration assistance.

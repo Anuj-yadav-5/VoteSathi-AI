@@ -24,11 +24,11 @@ export function render() {
         <!-- Hero Background Image -->
         <div style="position: absolute; inset: 0; z-index: -1; overflow: hidden; opacity: 0.35; pointer-events: none;">
           <img src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?q=80&w=2000&auto=format&fit=crop" alt="Hero Background" style="width: 100%; height: 100%; object-fit: cover; filter: blur(2px) brightness(0.7);" />
-          <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(12,10,8,0.3), var(--color-bg));"></div>
+          <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--color-bg));"></div>
         </div>
         
         <div class="ai-orb-container">
-          <div class="ai-orb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg, #f59e0b, #d97706);color:white;">
+          <div class="ai-orb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg, var(--color-india-saffron), #d97706);color:white;">
             <i data-lucide="bot" style="width:32px;height:32px;"></i>
           </div>
         </div>
@@ -151,6 +151,7 @@ export function render() {
                     <div style="flex:1;">
                       <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
                         <h3 style="font-size:15px;font-weight:600;">${f.title}</h3>
+                        ${f.isNew ? `<span class="badge ${f.badge}" style="font-size:9px;padding:2px 6px;">New</span>` : ''}
                       </div>
                       <p style="font-size:13px;color:var(--color-muted);line-height:1.6;">${f.desc}</p>
                     </div>
@@ -166,7 +167,7 @@ export function render() {
         <section class="section" style="padding-top:0;">
           <div class="container">
             <div class="reveal" style="text-align:center;margin-bottom:48px;">
-              <h2 style="font-size:clamp(26px,4vw,36px);margin-bottom:12px;">How it works</h2>
+              <h2 class="text-gradient-primary" style="font-size:clamp(26px,4vw,36px);margin-bottom:12px;">How it works</h2>
               <p style="color:var(--color-muted);font-size:15px;">Three steps to becoming a confident voter.</p>
             </div>
 
@@ -189,8 +190,8 @@ export function render() {
           <div class="container">
             <div class="reveal" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:20px;padding:56px 40px;text-align:center;position:relative;overflow:hidden;">
               <div style="position:absolute;inset:0;background:radial-gradient(ellipse 600px 300px at 50% 100%,rgba(249,115,22,0.06) 0%,transparent 70%);pointer-events:none;"></div>
-              <span class="badge badge-orange" style="margin-bottom:20px;display:inline-flex;">☎ Voter Helpline: 1950</span>
-              <h2 style="font-size:clamp(24px,4vw,36px);margin-bottom:14px;">Ready to cast your vote?</h2>
+              <span class="badge" style="margin-bottom:20px;display:inline-flex;background:rgba(245,158,11,0.15);color:var(--color-india-saffron);border:1px solid rgba(245,158,11,0.3);">☎ Voter Helpline: 1950</span>
+              <h2 class="text-gradient-primary" style="font-size:clamp(24px,4vw,36px);margin-bottom:14px;">Ready to cast your vote?</h2>
               <p style="color:var(--color-muted);font-size:15px;max-width:440px;margin:0 auto 32px;line-height:1.7;">Register, verify your details, and find your polling booth — all through official ECI portals.</p>
               <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
                 <a href="${ECI.register}" target="_blank" class="btn btn-primary">Register to Vote ↗</a>
@@ -242,7 +243,7 @@ function appendMessage(role, text) {
     const rawHTML = window.marked ? window.marked.parse(text) : text.replace(/\n/g, '<br>');
     const parsedHTML = DOMPurify.sanitize(rawHTML);
     div.innerHTML = `
-      <div style="width:32px;height:32px;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🤖</div>
+      <div style="width:32px;height:32px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🤖</div>
       <div class="chat-bubble-ai" id="${id}">
         ${parsedHTML}
         <div style="display:flex;gap:8px;margin-top:12px;border-top:1px solid rgba(0,0,0,0.05);padding-top:8px;">
@@ -267,7 +268,7 @@ function showTyping() {
   div.id = 'typing-indicator';
   div.style.cssText = 'display:flex;gap:10px;align-items:center;margin-bottom:16px;';
   div.innerHTML = `
-    <div style="width:32px;height:32px;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;">🤖</div>
+    <div style="width:32px;height:32px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;">🤖</div>
     <div style="display:flex;gap:4px;padding:12px 16px;background:var(--color-surface2);border:1px solid var(--color-border);border-radius:18px;">
       <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
     </div>`;

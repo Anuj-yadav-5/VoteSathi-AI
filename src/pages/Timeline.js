@@ -25,22 +25,17 @@ export function render() {
       position: relative;
       overflow: hidden;
     }
-    .phase-card::before {
-      content:'';
-      position:absolute;
-      top:0; left:0; right:0;
-      height:2px;
-      background: linear-gradient(90deg,transparent,rgba(245,158,11,0.15),transparent);
-    }
+    /* Local phase-card accent removed as it is now global in tailwind.css */
     .phase-card:hover {
-      border-color: rgba(245,158,11,0.35);
-      background: rgba(26,23,16,0.95);
+      border-color: rgba(245,158,11,0.4);
+      background: var(--color-surface2);
       transform: translateX(4px);
-      box-shadow: -4px 0 20px rgba(245,158,11,0.07), 0 8px 32px rgba(0,0,0,0.4);
+      box-shadow: -4px 0 20px rgba(245,158,11,0.07), 0 8px 24px rgba(245,158,11,0.05);
     }
     .phase-card.phase-open {
-      border-color: rgba(245,158,11,0.4);
-      box-shadow: 0 0 0 1px rgba(245,158,11,0.06), 0 8px 32px rgba(0,0,0,0.4);
+      border-color: rgba(245,158,11,0.5);
+      background: var(--color-surface);
+      box-shadow: 0 0 0 1px rgba(245,158,11,0.1), 0 8px 32px rgba(245,158,11,0.05);
     }
     .phase-detail {
       display: none;
@@ -77,7 +72,7 @@ export function render() {
           <span style="font-size:11px;font-weight:700;color:#f59e0b;letter-spacing:0.1em;text-transform:uppercase;">10 Phases</span>
         </div>
         <h1 class="reveal" style="font-size:clamp(30px,5vw,52px);font-weight:800;margin-bottom:14px;line-height:1.15;">
-          Election <span style="background:linear-gradient(135deg,#fbbf24,#d97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Timeline</span>
+          Election <span class="text-gradient-primary">Timeline</span>
         </h1>
         <p class="reveal" style="color:var(--color-muted);font-size:16px;max-width:500px;line-height:1.7;">
           Every phase of an Indian election — from announcement to result. Click any phase to expand details.
@@ -88,8 +83,8 @@ export function render() {
     <section style="padding:0 0 96px;">
       <div class="container">
         <div style="position:relative;">
-          <!-- Vertical gold line -->
-          <div style="position:absolute;left:19px;top:24px;bottom:24px;width:2px;background:linear-gradient(180deg,#d97706 0%,rgba(245,158,11,0.15) 60%,transparent 100%);border-radius:1px;z-index:0;"></div>
+          <!-- Vertical Tri-color line -->
+          <div style="position:absolute;left:19px;top:24px;bottom:24px;width:3px;background:linear-gradient(180deg, var(--color-india-saffron) 0%, #FFFFFF 50%, var(--color-india-green) 100%);border-radius:1px;z-index:0;opacity:0.3;"></div>
 
           <div style="display:flex;flex-direction:column;gap:4px;">
             ${PHASES.map((p) => {

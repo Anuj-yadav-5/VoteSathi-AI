@@ -22,21 +22,12 @@ export function render() {
       position: relative;
       overflow: hidden;
     }
-    .glossary-card::before {
-      content:'';
-      position:absolute;
-      top:0;left:0;right:0;
-      height:2px;
-      background:linear-gradient(90deg,transparent,rgba(245,158,11,0.2),transparent);
-      opacity:0;
-      transition:opacity 0.2s;
-    }
+    /* Local glossary-card accent removed as it is now global in tailwind.css */
     .glossary-card:hover {
       border-color: rgba(245,158,11,0.35);
       transform: translateY(-3px);
       box-shadow: 0 12px 36px rgba(0,0,0,0.4), 0 0 0 1px rgba(245,158,11,0.05);
     }
-    .glossary-card:hover::before { opacity:1; }
     .glossary-search-wrap {
       position:relative;
       max-width:520px;
@@ -76,7 +67,7 @@ export function render() {
           <span style="font-size:11px;font-weight:700;color:#f59e0b;letter-spacing:0.1em;text-transform:uppercase;">${TERMS.length} Terms</span>
         </div>
         <h1 class="reveal" style="font-size:clamp(30px,5vw,52px);font-weight:800;margin-bottom:14px;line-height:1.15;">
-          Election <span style="background:linear-gradient(135deg,#fbbf24,#d97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Glossary</span>
+          Election <span class="text-gradient-primary">Glossary</span>
         </h1>
         <p class="reveal" style="color:var(--color-muted);font-size:16px;max-width:500px;line-height:1.7;">
           Decode every election term — with Hindi translations. Search to find what you need.

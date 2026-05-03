@@ -81,7 +81,7 @@ export function render() {
           <span style="font-size:11px;font-weight:700;color:#f59e0b;letter-spacing:0.1em;text-transform:uppercase;">8 Chapters</span>
         </div>
         <h1 class="reveal" style="font-size:clamp(30px,5vw,52px);font-weight:800;margin-bottom:14px;line-height:1.15;">
-          Voter's <span style="background:linear-gradient(135deg,#fbbf24,#d97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Step-by-Step</span> Guide
+          Voter's <span class="text-gradient-primary">Step-by-Step</span> Guide
         </h1>
         <p class="reveal" style="color:var(--color-muted);font-size:16px;max-width:500px;line-height:1.7;">
           Everything from checking eligibility to casting your vote — one clear step at a time.

@@ -48,24 +48,19 @@ export function render() {
     .quiz-hero h1 {
       font-family: var(--font-outfit); font-size: clamp(32px, 5vw, 56px);
       font-weight: 800; letter-spacing: -1.5px; margin-bottom: 12px;
-      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 40%, #d97706 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .quiz-hero p { color: var(--color-muted); font-size: 16px; max-width: 480px; margin: 0 auto; line-height: 1.7; }
 
     .quiz-card {
-      background: linear-gradient(145deg, rgba(30,27,22,0.95) 0%, rgba(20,18,14,0.98) 100%);
-      border: 1px solid rgba(245,158,11,0.2);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
       border-radius: 24px;
       padding: 40px;
-      box-shadow: 0 0 0 1px rgba(245,158,11,0.05), 0 24px 64px rgba(0,0,0,0.5), inset 0 1px 0 rgba(245,158,11,0.1);
+      box-shadow: 0 12px 48px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1);
       position: relative; overflow: hidden;
       animation: cardEnter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .quiz-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(245,158,11,0.4), transparent);
-    }
+    /* Local quiz-card accent removed as it is now global in tailwind.css */
     @keyframes cardEnter {
       from { opacity: 0; transform: translateY(20px) scale(0.98); }
       to   { opacity: 1; transform: translateY(0) scale(1); }
@@ -76,23 +71,24 @@ export function render() {
     }
     .quiz-counter {
       font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(245,158,11,0.6);
+      color: var(--color-india-saffron);
     }
     .quiz-score-pill {
-      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25);
-      color: #f59e0b; border-radius: 999px; padding: 4px 14px;
+      background: rgba(255,153,51,0.1); border: 1px solid rgba(255,153,51,0.25);
+      color: var(--color-india-saffron); border-radius: 999px; padding: 4px 14px;
       font-size: 12px; font-weight: 700; letter-spacing: 0.05em;
     }
 
     .quiz-progress-track {
-      width: 100%; height: 4px;
-      background: rgba(245,158,11,0.1); border-radius: 99px; margin-bottom: 32px; overflow: hidden;
+      width: 100%; height: 6px;
+      background: var(--color-surface2); border-radius: 99px; margin-bottom: 32px; overflow: hidden;
+      border: 1px solid var(--color-border);
     }
     .quiz-progress-fill {
       height: 100%; border-radius: 99px;
-      background: linear-gradient(90deg, #f59e0b, #fbbf24);
+      background: linear-gradient(90deg, var(--color-india-saffron), var(--color-india-green));
       transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 0 8px rgba(245,158,11,0.5);
+      box-shadow: 0 0 10px rgba(255,153,51,0.3);
     }
 
     .quiz-question {
@@ -104,18 +100,18 @@ export function render() {
 
     .quiz-opt {
       display: flex; align-items: center; gap: 14px;
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      background: var(--color-surface2); border: 1px solid var(--color-border);
       border-radius: 14px; padding: 14px 18px; cursor: pointer; width: 100%; text-align: left;
       transition: all 0.2s ease; color: var(--color-text); font-size: 14px; font-weight: 500;
     }
     .quiz-opt:hover:not(:disabled) {
-      background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.35);
+      background: rgba(255,153,51,0.08); border-color: rgba(255,153,51,0.35);
       transform: translateX(4px);
     }
     .quiz-opt-label {
       min-width: 28px; height: 28px; border-radius: 8px;
-      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25);
-      color: #f59e0b; font-size: 12px; font-weight: 800;
+      background: rgba(255,153,51,0.1); border: 1px solid rgba(255,153,51,0.25);
+      color: var(--color-india-saffron); font-size: 12px; font-weight: 800;
       display: flex; align-items: center; justify-content: center; letter-spacing: 0.05em;
       transition: all 0.2s ease; flex-shrink: 0;
     }
@@ -145,7 +141,7 @@ export function render() {
 
     .quiz-explanation {
       display: none; margin-top: 20px; padding: 16px 20px;
-      background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2);
+      background: rgba(255,153,51,0.06); border: 1px solid rgba(255,153,51,0.2);
       border-radius: 14px; font-size: 13.5px; color: var(--color-muted); line-height: 1.75;
       animation: fadeIn 0.3s ease;
     }
@@ -154,24 +150,20 @@ export function render() {
 
     .quiz-next-btn {
       display: none; margin-top: 24px; width: 100%;
-      background: linear-gradient(135deg, #d97706, #f59e0b);
-      color: #000; border: none; border-radius: 14px;
+      background: linear-gradient(135deg, var(--color-india-saffron), var(--color-india-green));
+      color: white; border: none; border-radius: 14px;
       padding: 14px 24px; font-size: 15px; font-weight: 700;
       cursor: pointer; justify-content: center; align-items: center; gap: 8px;
       transition: all 0.2s ease; letter-spacing: 0.02em; font-family: var(--font-outfit);
     }
-    .quiz-next-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,158,11,0.35); }
+    .quiz-next-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(19,136,8,0.25); }
 
     /* Result Card */
     .quiz-result-card {
-      background: linear-gradient(145deg, rgba(30,27,22,0.95), rgba(20,18,14,0.98));
-      border: 1px solid rgba(245,158,11,0.25); border-radius: 24px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border); border-radius: 24px;
       padding: 56px 40px; text-align: center; position: relative; overflow: hidden;
       animation: cardEnter 0.5s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .quiz-result-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(245,158,11,0.5), transparent);
     }
     .result-stamp {
       font-size: 72px; margin-bottom: 16px; display: block;
@@ -181,13 +173,9 @@ export function render() {
       from { opacity: 0; transform: scale(0.3) rotate(-10deg); }
       to   { opacity: 1; transform: scale(1) rotate(0deg); }
     }
-    .result-grade {
-      font-family: var(--font-outfit); font-size: clamp(20px, 3vw, 28px); font-weight: 800;
-      color: #fbbf24; margin-bottom: 8px; letter-spacing: -0.5px;
-    }
     .result-score-big {
       font-family: var(--font-outfit); font-size: clamp(56px, 8vw, 80px); font-weight: 800;
-      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      background: linear-gradient(135deg, var(--color-india-saffron), var(--color-india-green));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       line-height: 1; margin: 16px 0 8px;
     }
@@ -198,19 +186,19 @@ export function render() {
     }
     .result-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .btn-vintage-primary {
-      background: linear-gradient(135deg, #d97706, #f59e0b); color: #000;
+      background: linear-gradient(135deg, var(--color-india-saffron), var(--color-india-green)); color: white;
       border: none; border-radius: 12px; padding: 12px 28px;
       font-size: 14px; font-weight: 700; cursor: pointer; font-family: var(--font-outfit);
       letter-spacing: 0.03em; transition: all 0.2s ease;
     }
-    .btn-vintage-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,158,11,0.35); }
+    .btn-vintage-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(19,136,8,0.25); }
     .btn-vintage-outline {
-      background: transparent; color: #f59e0b;
-      border: 1px solid rgba(245,158,11,0.4); border-radius: 12px; padding: 12px 28px;
+      background: transparent; color: var(--color-india-saffron);
+      border: 1px solid rgba(255,153,51,0.4); border-radius: 12px; padding: 12px 28px;
       font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none;
       display: inline-flex; align-items: center; transition: all 0.2s ease;
     }
-    .btn-vintage-outline:hover { background: rgba(245,158,11,0.08); border-color: #f59e0b; }
+    .btn-vintage-outline:hover { background: rgba(255,153,51,0.08); border-color: var(--color-india-saffron); }
 
     @media (max-width: 600px) {
       .quiz-card, .quiz-result-card { padding: 28px 20px; }
@@ -223,7 +211,7 @@ export function render() {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         20 Questions · Indian Democracy
       </div>
-      <h1>Civic Knowledge Quiz</h1>
+      <h1 class="text-gradient-primary">Knowledge Quiz</h1>
       <p>How well do you know the world's largest democracy? Put your civic knowledge to the test.</p>
     </div>
 
